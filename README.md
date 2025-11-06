@@ -8,24 +8,8 @@ What's included
 - `maven/maven-build-jfrog.yaml` — Maven build using JFrog tasks for resolve/deploy and publishing build info.
 - `maven/maven-pipeline.yaml` — small example showing variable group usage and template call.
 
-Quick use (examples)
-- .NET Core (in your `azure-pipelines.yml`):
 
-```yaml
-- template: dotnetcore/dotnetcore-build.yaml
-	parameters:
-		mainproject: '**/*.csproj'
-		runTests: true
-```
 
-- Maven:
-
-```yaml
-- template: maven/maven-build.yaml
-	parameters:
-		goal: 'package'
-		artifactsPath: '**/*.jar'
-```
 
 Notes
 - Templates are parameterized; check the top of each YAML for available parameters and defaults.
