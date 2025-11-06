@@ -14,7 +14,7 @@ What's included
 Notes
 - Templates are parameterized; check the top of each YAML for available parameters and defaults.
 - For JFrog templates you must create an Artifactory service connection in the Azure DevOps project and pass its name via `artifactoryConnection`.
-- Secure secrets using variable groups and service connections; do not hardcode credentials.
+- Secure secrets using variable groups and service connections.
 
 
 
