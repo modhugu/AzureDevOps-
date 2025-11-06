@@ -1,0 +1,21 @@
+---
+
+
+variables:
+  - group: generic_java_maven
+  - name: test
+    value: 'testing'
+  
+
+steps:
+  - script: "echo $(test)"
+  - template: ./maven-build.yaml
+    parameters:
+      goal: $(goal)
+      specificVersion: ''
+      artifactsPath: $(artifactPath)
+      testResultsFiles: $(testResultsFile)
+    
+
+  
+    

@@ -1,0 +1,34 @@
+parameters:
+  - name: artifactoryConnection
+    type: string
+    default: 'JFROG_CLOUD'
+  - name: targetResolveReleaseRepo
+    type: string
+    default: 'classroom-libs-release'
+  - name: targetResolveSnapshotRepo
+    type: string
+    default: 'classroom-libs-snapshot'
+  - name: targetDeployReleaseRepo
+    type: string
+    default: 'classroom-libs-release'
+  - name: targetDeploySnapshotRepo
+    type: string
+    default: 'classroom-libs-snapshot'
+steps:
+  - task: JFrogMaven@1
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: 'install'
+      artifactoryResolverService: ${{ parameters.artifactoryConnection }}
+      targetResolveReleaseRepo: ${{ parameters.targetResolveReleaseRepo }}
+      targetResolveSnapshotRepo: ${{ parameters.targetResolveReleaseRepo }}
+      artifactoryDeployService: ${{ parameters.artifactoryConnection }}
+      targetDeployReleaseRepo: ${{ parameters.targetDeployReleaseRepo }}
+      targetDeploySnapshotRepo: ${{ parameters.targetDeploySnapshotRepo}}
+      javaHomeOption: 'JDKVersion'
+  
+  - task: JFrogPublishBuildInfo@1
+    inputs:
+      artifactoryConnection: ${{ parameters.artifactoryConnection }}
+      buildName: '$(Build.DefinitionName)'
+      buildNumber: '$(Build.BuildNumber)'
